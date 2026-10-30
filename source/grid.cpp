@@ -887,6 +887,21 @@ void markIsolatedFluidCell(FlagGrid &flags, const int mark)
 	knMarkIsolatedFluidCell(flags, mark);
 }
 
+KERNEL(idx)
+void knMarkObstacleStick(FlagGrid &flags, const bool stick)
+{
+	if (!flags.isObstacle(idx)) return;
+	if (stick) flags[idx] |=  FlagGrid::TypeStick;
+	else       flags[idx] &= ~FlagGrid::TypeStick;
+}
+
+//adds the stick flag to all obstacle cells (turns free-slip walls into no-slip walls when simulated by setWallBcs)
+PYTHON()
+void setObstacleStick(FlagGrid &flags, bool stick=true)
+{
+	knMarkObstacleStick(flags, stick);
+}
+
 PYTHON()
 void copyMACData(const MACGrid &source, MACGrid &target, const FlagGrid& flags, const int flag, const int bnd)
 {

@@ -1,8 +1,12 @@
 from manta import *
 import math
 import numpy as np
+import os
 
-res = 64
+save_path = "/home/fivo/Desktop/mfEvaluation/data"
+
+
+res = 256
 domain_size = 1.0
 gs = vec3(res, res, res)
 dim = 3
@@ -44,8 +48,9 @@ for t in range(10000):
 
     copyGridToArrayVec3(target=npArray, source=vel)
     copyGridToArrayReal(target=npDensityArray, source=density)
-    if t % 10 == 0:
-        np.save(r"C:\Users\felly\PycharmProjects\mfEvaluation\data\vel_%04d.npy" % t, npArray)
-        np.save(r"C:\Users\felly\PycharmProjects\mfEvaluation\data\den_%04d.npy" % t, npDensityArray)
+
+    if t % 100 == 0:
+        np.save(os.path.join(save_path, "vel_%04d.npy" % t), npArray)
+        np.save(os.path.join(save_path, "den_%04d.npy" % t), npDensityArray)
 
     s.step()

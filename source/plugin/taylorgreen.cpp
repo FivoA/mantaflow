@@ -12,10 +12,10 @@ namespace Manta {
 
 // Populate velocity field with values according to taylor green vortex formula
 // NOTE: I AM USING the domain [0, pi]
-// 0 to pi is ONE HALF PERIOD AS NORMAL TG VORTEX USES A WHOLE PERIOD OF [0, 2pi], i am using 4 half periods right now
+// 0 to pi is ONE HALF PERIOD AS NORMAL TG VORTEX USES A WHOLE PERIOD OF [0, 2pi]
 KERNEL(bnd=1) void populateTGVortex(MACGrid& vel, Real domainSize) {
     const Real U0 = 0.04;
-    const Real k_ = 4.0 * PI / domainSize;
+    const Real k_ = 2.0 * PI / domainSize; // 2 half periods right now
     
     const int resX = vel.getSizeX();
     const Real dx = domainSize / Real(resX - 2); // -2 because we have 1 boundary cell that is not liquid on each side of the domain

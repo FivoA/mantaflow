@@ -11,7 +11,7 @@
 #******************************************************************************
 
 project (MantaFlow)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/tools/cmake/")
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
@@ -214,6 +214,8 @@ set(PP_SOURCES
 	source/plugin/waves.cpp
 	source/python/defines.py
 	source/test.cpp
+	
+	source/plugin/taylorgreen.cpp
 )
 
 set(PP_HEADERS
